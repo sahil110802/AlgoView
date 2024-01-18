@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div>
       <Drawer>
-  <DrawerTrigger>Open</DrawerTrigger>
+  <DrawerTrigger>Open $%$%</DrawerTrigger>
   <DrawerContent>
     <DrawerHeader className='justify-center'>
       <DrawerTitle>Are you absolutely sure?</DrawerTitle>
