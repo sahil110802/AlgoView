@@ -25,10 +25,10 @@ const App = () => {
     </DrawerHeader>
     <div className='w-1/5 p-4'>
       <h1>Speed</h1>
-    <Slider className='p-4' defaultValue={[33]} max={100} step={1} />
+    <Slider className='p-4' defaultValue={[5]} max={100} step={1} />
       <h1>Size</h1>
     
-    <Slider className='p-4' defaultValue={[33]} max={100} step={1} />
+    <Slider className='p-4' defaultValue={[5]} max={100} step={1} />
 
     </div>
 
