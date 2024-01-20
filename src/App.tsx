@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import { Slider } from './components/ui/slider'
+import Sliders from './components/Sliders/Sliders'
 
 
 
@@ -34,11 +34,7 @@ const App = () => {
   <div className='flex flex-row justify-around'>
     <div className='flex flex-row m-3 w-1/2'>
       <div className='w-1/5 p-4'>
-       <h1>Speed</h1>
-    <Slider className='p-4' defaultValue={[500]} min={50} max={1200} step={1} />
-      <h1>Size</h1>
-    
-    <Slider className='p-4' defaultValue={[10]} min={4} max={40} step={1} />
+       <Sliders/>
 
     </div>
     <div className='p-4'>
@@ -58,8 +54,8 @@ const App = () => {
     </div>
     </div>
 
-    <div className=''>
-      <textarea>
+    <div className='w-1/3'>
+      <textarea className=''>
         
       </textarea>
     </div>
