@@ -18,12 +18,25 @@ import {
 } from "@/components/ui/select"
 
 import Sliders from './components/Sliders/Sliders'
+import ArrayInput from './components/ArrayInput/ArrayInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { arrGenerator } from './features/sortingSlice'
+import { useEffect } from 'react'
+import Body from './components/Body/Body'
 
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { size, arr, speed } = useSelector((state) => {
+    return state.sortingView;
+  });
+  useEffect(() => {
+    dispatch(arrGenerator());
+  }, []);
   return (
-    <div>
+    <div className='font-serif font-extrabold'>
+      <Body/>
       <Drawer>
   <DrawerTrigger>Open</DrawerTrigger>
   <DrawerContent>
@@ -33,7 +46,7 @@ const App = () => {
     </DrawerHeader>
   <div className='flex flex-row justify-around'>
     <div className='flex flex-row m-3 w-1/2'>
-      <div className='w-1/5 p-4'>
+      <div className='w-1/4 p-4'>
        <Sliders/>
 
     </div>
@@ -55,9 +68,7 @@ const App = () => {
     </div>
 
     <div className='w-1/3'>
-      <textarea className=''>
-        
-      </textarea>
+      <ArrayInput/>
     </div>
 </div>
 

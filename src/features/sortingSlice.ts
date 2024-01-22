@@ -37,6 +37,13 @@ export const sortingSlice = createSlice({
           }
         : { ...state };
     },
+    arrGenerator: (state) => {
+      const tempArr = arrGenerate(state.size);
+      return {
+        ...state,
+        arr: tempArr,
+      };
+    },
     setArr: (state, action: PayloadAction<number[]>) => {
       const tempArr: SortingState['arr'] = action.payload.map((value, i) => ({
         value,
@@ -83,6 +90,7 @@ export const {
   setArr,
   setIsDisabled,
   setAlgo,
+  arrGenerator,
 } = sortingSlice.actions;
 
 export default sortingSlice.reducer;
