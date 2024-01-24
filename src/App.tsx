@@ -20,17 +20,37 @@ import {
 import Sliders from './components/Sliders/Sliders'
 import ArrayInput from './components/ArrayInput/ArrayInput'
 import { useDispatch, useSelector } from 'react-redux'
-import { arrGenerator } from './features/sortingSlice'
+import { arrGenerator, setArr, setIsDisabled } from './features/sortingSlice'
 import { useEffect } from 'react'
 import Body from './components/Body/Body'
+import InsertionSort from './components/Algos/Insertion'
 
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const { size, arr, speed } = useSelector((state) => {
+  const { arr, speed, isDisabled, algo } = useSelector((state) => {
     return state.sortingView;
   });
+
+
+  const handleClick = async () => {
+    setIsDisabled(true);
+    algo === 0 && (await InsertionSort([...arr], speed, setDisabled));
+    // algo === 1 && (await BubbleSort([...arr], speed, setDisabled));
+    // algo === 2 && (await Selection_sort([...arr], speed, setDisabled));
+    // algo === 3 && (await Merge_sort([...arr], speed, setDisabled));
+    // algo === 4 && (await Quick_sort([...arr], speed, setDisabled, pivot));
+    const arrCopy = [...arr];
+    const tempArr = [];
+    arrCopy.forEach((element) => {
+      tempArr.push(element.value);
+    });
+    tempArr.sort();
+    console.log(tempArr);
+    dispatch(setArr(tempArr));
+  };
+  
   useEffect(() => {
     dispatch(arrGenerator());
   }, []);
@@ -46,7 +66,7 @@ const App = () => {
     </DrawerHeader>
   <div className='flex flex-row justify-around'>
     <div className='flex flex-row m-3 w-1/2'>
-      <div className='w-1/4 p-4'>
+      <div className='w-1/5 p-4'>
        <Sliders/>
 
     </div>
@@ -55,7 +75,14 @@ const App = () => {
   <SelectTrigger className="w-[180px]">
     <SelectValue placeholder="Select Algo" />
   </SelectTrigger>
-  <SelectContent>
+  <SelectContent
+  style={{
+              color: isDisabled ? "white" : "black",
+              border: isDisabled && "1px solid white",
+            }}
+            onClick={handleClick}
+            disabled={isDisabled}
+  >
     <SelectItem value="insertion">Insertion</SelectItem>
     <SelectItem value="bubble">Bubble</SelectItem>
     <SelectItem value="merge">Merge</SelectItem>
